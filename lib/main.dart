@@ -50,30 +50,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 44, 44, 44),
-        title: Center(
-          child: Text(
-            'app_title'.tr(),
-            style: const TextStyle(
-              fontFamily: 'Disket',
-              color: Color.fromARGB(255, 29, 170, 97),
-            ),
-          ),
-        ), // استخدام النص المترجم
-      ),
-      body: Container(
-        height: double.infinity,
+    return Stack(children: [
+      Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(
-                'assets/images/wallpaperDark.jpg',
-              )),
+            image: AssetImage('assets/images/wallpaperDark.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+          ),
         ),
-        child: SingleChildScrollView(
+      ),
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 44, 44, 44),
+          title: Center(
+            child: Text(
+              'app_title'.tr(),
+              style: const TextStyle(
+                fontFamily: 'Disket',
+                color: Color.fromARGB(255, 29, 170, 97),
+              ),
+            ),
+          ), // استخدام النص المترجم
+        ),
+        body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               const Row(
@@ -849,7 +850,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-    );
+    ]);
   }
 
   void _launchWhatsApp(String phone) async {
